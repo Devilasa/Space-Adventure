@@ -1,0 +1,9 @@
+un thread per lo sfondo, 1 per gli oggetti volanti, 1 per la nave, 1 per la musica,
+gli oggetti volanti seguono sempre le stesse azioni quindi potrebbero estendere un abstract con dentro un template
+il comportamento degli oggetti volanti può essere innestato con uno strategy
+State per lo state in cui si trova il gioco (menu, in game, game over, leaderboards)
+observer per gli aggiornamenti?
+un Singleton per la musica?
+Iterator quando chiami gli aggiornamenti
+Strategy? Decorator? factory? Composite?
+
