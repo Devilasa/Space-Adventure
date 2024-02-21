@@ -15,21 +15,23 @@ public class GamePanel extends JLayeredPane  implements Runnable {
     public static final int FPS = 120;
     private Integer score = 0;
     private Thread gameThread;
+    private ObjectsManager objectsManager;
 
 
     public GamePanel() {
+        objectsManager = new ObjectsManager();
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
         this.setFocusable(true);
-        this.addKeyListener(new KeyHandler());
+        this.addKeyListener(objectsManager.getKeyHandler());
         this.addMouseListener(new MouseHandler());
         setLayout(new OverlayLayout(this));
 
 
-
         add(new BackgroundSky(), 1);
-        add(new ObjectsManager(), 0);
+        add(objectsManager, 0);
+
 
         System.out.println(this.getComponentCount());
 
@@ -63,7 +65,7 @@ public class GamePanel extends JLayeredPane  implements Runnable {
 
             if(delta >= 1){
                 update();
-                //repaint();
+                repaint();
                  //System.out.println("GamePanel thread is running");
                 delta--;
                 drawCount++;

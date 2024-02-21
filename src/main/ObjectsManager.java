@@ -1,7 +1,9 @@
 package main;
 
+import behaviours.AllDirectionMovement;
 import entity.Entity;
-import entity.StraightFall;
+import behaviours.StraightFall;
+import entity.Spaceship;
 import entity.TopAsteroid;
 
 import javax.swing.*;
@@ -10,17 +12,18 @@ import java.awt.*;
 import java.util.ArrayList;
 
 import static main.GamePanel.FPS;
-import static main.GamePanel.screenHeight;
 
 public class ObjectsManager extends JComponent implements Runnable{
     private ArrayList<Entity> entities;
     private Thread objectsThread;
+    private KeyHandler keyHandler;
 
     public ObjectsManager() {
+        this.keyHandler = new KeyHandler();
         entities = new ArrayList<>();
         entities.add(new TopAsteroid(new StraightFall()));
         entities.add(new TopAsteroid(new StraightFall()));
-
+        entities.add(new Spaceship(keyHandler, new AllDirectionMovement()));
         objectsThread = new Thread(this);
         objectsThread.start();
     }
@@ -40,7 +43,7 @@ public class ObjectsManager extends JComponent implements Runnable{
             lastTime = currentTime;
 
             if(delta >= 1){
-                repaint();
+                //repaint();
                 update();
                 //System.out.println("OBJ MANAGER RUNNING");
                 delta--;
@@ -54,6 +57,7 @@ public class ObjectsManager extends JComponent implements Runnable{
     public void update(){
         for(Entity entity : entities){
             entity.update();
+            checkCollision(entity);
         }
     }
 
@@ -66,6 +70,17 @@ public class ObjectsManager extends JComponent implements Runnable{
         }
 
         graphics2D.dispose();
+    }
+
+    public void checkCollision(Entity entity){
+        for(Entity e : entities){
+            if(e != entity) {
+                if (entity.getSolidArea().intersects(e.getSolidArea())) {
+                    entity.setCollision(true);
+                    break;
+                }
+            }
+        }
     }
 
     public ArrayList<Entity> getEntities() {
@@ -82,5 +97,13 @@ public class ObjectsManager extends JComponent implements Runnable{
 
     public void setObjectsThread(Thread objectsThread) {
         this.objectsThread = objectsThread;
+    }
+
+    public KeyHandler getKeyHandler() {
+        return keyHandler;
+    }
+
+    public void setKeyHandler(KeyHandler keyHandler) {
+        this.keyHandler = keyHandler;
     }
 }

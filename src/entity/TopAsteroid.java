@@ -1,44 +1,43 @@
 package entity;
 
+import behaviours.FallingBehaviour;
+import states.Exploded;
+import states.Flying;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Random;
 
 import static main.GamePanel.screenWidth;
 
 public class TopAsteroid extends FallingObject{
-
-    public TopAsteroid(MovementBehaviour movementBehaviour) {
-        setMovementBehaviour(movementBehaviour);
+    public TopAsteroid(FallingBehaviour fallingBehaviour) {
+        setFallingBehaviour(fallingBehaviour);
         setDefaultValues();
         getImages();
-        setState(getAliveState());
+        setFlyingState(new Flying(this));
+        setExplodedState(new Exploded(this));
+        setState(getFlyingState());
     }
 
     @Override
     public void getImages() {
-        ArrayList<BufferedImage> aliveImages = new ArrayList<>();
         try {
-            aliveImages.add(ImageIO.read(new File("res/asteroid/asteroid_top_1.png")));
-            aliveImages.add(ImageIO.read(new File("res/asteroid/asteroid_top_2.png")));
-            aliveImages.add(ImageIO.read(new File("res/asteroid/asteroid_top_3.png")));
-            aliveImages.add(ImageIO.read(new File("res/asteroid/asteroid_top_4.png")));
+            flyingImages.add(ImageIO.read(new File("res/asteroid/asteroid_top_1.png")));
+            flyingImages.add(ImageIO.read(new File("res/asteroid/asteroid_top_2.png")));
+            flyingImages.add(ImageIO.read(new File("res/asteroid/asteroid_top_3.png")));
+            flyingImages.add(ImageIO.read(new File("res/asteroid/asteroid_top_4.png")));
         } catch (IOException e){
             e.printStackTrace();
         }
-        setAliveState(new Alive(aliveImages, this));
 
-        ArrayList<BufferedImage> deadImages = new ArrayList<>();
         try {
-            deadImages.add(ImageIO.read(new File("res/asteroid/explosion.png")));
+            explodedImages.add(ImageIO.read(new File("res/asteroid/explosion.png")));
         } catch (IOException e){
             e.printStackTrace();
         }
-        setDeadState(new Dead(deadImages, this));
     }
 
     public void setDefaultValues(){
@@ -49,6 +48,18 @@ public class TopAsteroid extends FallingObject{
         setSpeed(3);
         setRespawnCounter(0);
         setRespawnCounterTarget(8);
+        setSpriteCounter(0);
+        setSolidArea(new Rectangle(getX()+getTextureShiftX(), getY()+getTextureShiftY(), 30, 29));
+    }
+
+    @Override
+    public void respawn(){
+        setX(Random.from(new Random()).nextInt(0, screenWidth - 20));
+        setY(-50);
+        if(getRespawnCounter() == getRespawnCounterTarget()){
+            setRespawnCounter(0);
+            setSpeed(getSpeed()+1);
+        }
         setSolidArea(new Rectangle(getX()+getTextureShiftX(), getY()+getTextureShiftX(), 30, 29));
     }
 }

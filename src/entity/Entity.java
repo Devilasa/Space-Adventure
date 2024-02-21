@@ -1,8 +1,7 @@
 package entity;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
+
 
 public abstract class Entity {
     private int x, y;
@@ -10,41 +9,10 @@ public abstract class Entity {
     private int TextureShiftX;
     private int TextureShiftY;
     private Rectangle solidArea;
-    private State state;
-    private State Alive;
-    private State Dead;
-    private MovementBehaviour movementBehaviour;
+    private boolean collision;
 
-    public State getState() {
-        return state;
-    }
-
-    public void setState(State state) {
-        this.state = state;
-    }
-
-    public State getAliveState() {
-        return Alive;
-    }
-
-    public void setAliveState(State alive) {
-        Alive = alive;
-    }
-
-    public State getDeadState() {
-        return Dead;
-    }
-
-    public void setDeadState(State dead) {
-        Dead = dead;
-    }
-
-    public void update(){
-        state.update();
-    }
-    public void draw(Graphics2D graphics2D){
-        state.draw(graphics2D);
-    }
+    public abstract void update();
+    public abstract void draw(Graphics2D graphics2D);
     public abstract void getImages();
 
     public int getX() {
@@ -87,6 +55,14 @@ public abstract class Entity {
         TextureShiftY = textureShiftY;
     }
 
+    public boolean isCollision() {
+        return collision;
+    }
+
+    public void setCollision(boolean collision) {
+        this.collision = collision;
+    }
+
     public Rectangle getSolidArea() {
         return solidArea;
     }
@@ -95,11 +71,9 @@ public abstract class Entity {
         this.solidArea = solidArea;
     }
 
-    public MovementBehaviour getMovementBehaviour() {
-        return movementBehaviour;
+    public void updateSolidArea(){
+        solidArea.setLocation(getX() + getTextureShiftX(), getY() + getTextureShiftY());
     }
 
-    public void setMovementBehaviour(MovementBehaviour movementBehaviour) {
-        this.movementBehaviour = movementBehaviour;
-    }
+
 }
