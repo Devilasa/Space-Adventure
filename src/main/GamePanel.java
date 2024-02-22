@@ -97,4 +97,12 @@ public class GamePanel extends JLayeredPane  implements Runnable {
     public Integer getScore() {
         return score;
     }
+
+    public ObjectsManager getObjectsManager() {
+        return objectsManager;
+    }
+
+    public void setObjectsManager(ObjectsManager objectsManager) {
+        this.objectsManager = objectsManager;
+    }
 }
