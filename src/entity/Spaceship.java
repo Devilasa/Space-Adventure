@@ -28,7 +28,7 @@ public class Spaceship extends Entity{
         getImages();
         setDefaultValues();
         setAliveState(new Alive(this));
-        setDeadState(new Dead());
+        setDeadState(new Dead(this));
         setState(getAliveState());
     }
 
@@ -38,6 +38,9 @@ public class Spaceship extends Entity{
 
     @Override
     public void update() {
+        if(isCollision()){
+            setState(getDeadState());
+        }
         state.update();
     }
 
@@ -65,9 +68,11 @@ public class Spaceship extends Entity{
         try {
             deadImages.add(ImageIO.read(new File("res/spaceship/spaceship_broken_1.png")));
             deadImages.add(ImageIO.read(new File("res/spaceship/spaceship_broken_2.png")));
+            deadImages.add(ImageIO.read(new File("res/spaceship/spaceship_explosion.png")));
             deadImages.add(ImageIO.read(new File("res/spaceship/spaceship_broken_3.png")));
             deadImages.add(ImageIO.read(new File("res/spaceship/spaceship_broken_4.png")));
             deadImages.add(ImageIO.read(new File("res/spaceship/spaceship_broken_5.png")));
+
         } catch (IOException e){
             e.printStackTrace();
         }

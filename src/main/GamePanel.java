@@ -44,7 +44,7 @@ public class GamePanel extends JLayeredPane  implements Runnable {
         gameThread.start();
         Song song = Song.getInstance();
         song.setSongType("menuSong");
-        //song.playMusic();
+        song.playMusic();
 
     }
 
