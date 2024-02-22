@@ -16,6 +16,7 @@ Strategy? Decorator? factory? Composite?
 
 -----
 facade nel game window
+singleton musica
 state per gli aggiornamenti degli oggetti (flying (aggiorna la posizione in base la falling behaviours(strategy)) e aggiorna le sprite o exploded (respawn ecc.))
 strategy nel comportamento di movimento degli oggetti che cadono (straight fall...)
 

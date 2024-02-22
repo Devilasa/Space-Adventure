@@ -33,7 +33,7 @@ public class GamePanel extends JLayeredPane  implements Runnable {
         add(objectsManager, 0);
 
 
-        System.out.println(this.getComponentCount());
+        //System.out.println(this.getComponentCount());
 
 
 

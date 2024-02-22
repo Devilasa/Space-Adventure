@@ -1,10 +1,7 @@
 package main;
 
-import behaviours.AllDirectionMovement;
-import entity.Entity;
-import behaviours.StraightFall;
-import entity.Spaceship;
-import entity.TopAsteroid;
+import behaviours.*;
+import entity.*;
 
 import javax.swing.*;
 
@@ -24,6 +21,14 @@ public class ObjectsManager extends JComponent implements Runnable{
         entities.add(new TopAsteroid(new StraightFall()));
         entities.add(new TopAsteroid(new StraightFall()));
         entities.add(new Spaceship(keyHandler, new AllDirectionMovement()));
+        entities.add(new DiagonalAsteroid(new RightDiagonalFall()));
+        entities.add(new BlueAsteroid(new LeftDiagonalFall()));
+        entities.add(new AlienShip(new ZigZagFall()));
+        entities.add(new AlienShip(new ZigZagFall()));
+        entities.add(new AlienShip(new ZigZagFall()));
+        entities.add(new AlienShip(new ZigZagFall()));
+
+
         objectsThread = new Thread(this);
         objectsThread.start();
     }

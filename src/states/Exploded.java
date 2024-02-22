@@ -31,6 +31,7 @@ public class Exploded implements State{
             fallingObject.setCollision(false);
             fallingObject.setState(fallingObject.getFlyingState());
             fallingObject.respawn();
+            fallingObject.setRespawnCounter(fallingObject.getRespawnCounter() + 1);
         }
     }
 

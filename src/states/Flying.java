@@ -23,7 +23,7 @@ public class Flying implements State {
 
     @Override
     public void update() {
-        if (fallingObject.getY() > (screenHeight * 2) || fallingObject.getX() > (screenWidth * 2)) {
+        if (fallingObject.getY() > (screenHeight * 2) || fallingObject.getX() > (screenWidth * 2) || fallingObject.getX() < (-screenWidth + 100)) {
             fallingObject.respawn();
             fallingObject.setRespawnCounter(fallingObject.getRespawnCounter() + 1);
         } else {

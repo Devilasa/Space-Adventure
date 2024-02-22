@@ -16,6 +16,7 @@ public abstract class FallingObject extends Entity{
     private int respawnCounterTarget;
     private int respawnCounter;
     private int spriteCounter;
+    private int side;
     private FallingBehaviour fallingBehaviour;
 
     public void performFall(){
@@ -56,6 +57,14 @@ public abstract class FallingObject extends Entity{
     }
     public void setSpriteCounter(int spriteCounter) {
         this.spriteCounter = spriteCounter;
+    }
+
+    public int getSide() {
+        return side;
+    }
+
+    public void setSide(int side) {
+        this.side = side;
     }
 
     public State getState() {
@@ -108,5 +117,6 @@ public abstract class FallingObject extends Entity{
     }
 
     public abstract void respawn();
+    public abstract void setDefaultValues();
 
 }

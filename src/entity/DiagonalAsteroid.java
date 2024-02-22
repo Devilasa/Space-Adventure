@@ -12,8 +12,8 @@ import java.util.Random;
 
 import static main.GamePanel.screenWidth;
 
-public class TopAsteroid extends FallingObject{
-    public TopAsteroid(FallingBehaviour fallingBehaviour) {
+public class DiagonalAsteroid extends FallingObject{
+    public DiagonalAsteroid(FallingBehaviour fallingBehaviour) {
         setFallingBehaviour(fallingBehaviour);
         setDefaultValues();
         getImages();
@@ -25,10 +25,10 @@ public class TopAsteroid extends FallingObject{
     @Override
     public void getImages() {
         try {
-            flyingImages.add(ImageIO.read(new File("res/asteroid/asteroid_top_1.png")));
-            flyingImages.add(ImageIO.read(new File("res/asteroid/asteroid_top_2.png")));
-            flyingImages.add(ImageIO.read(new File("res/asteroid/asteroid_top_3.png")));
-            flyingImages.add(ImageIO.read(new File("res/asteroid/asteroid_top_4.png")));
+            flyingImages.add(ImageIO.read(new File("res/asteroid/asteroid_diagonal_1.png")));
+            flyingImages.add(ImageIO.read(new File("res/asteroid/asteroid_diagonal_2.png")));
+            flyingImages.add(ImageIO.read(new File("res/asteroid/asteroid_diagonal_3.png")));
+            flyingImages.add(ImageIO.read(new File("res/asteroid/asteroid_diagonal_4.png")));
 
             explodedImages.add(ImageIO.read(new File("res/asteroid/explosion.png")));
         } catch (IOException e){
@@ -37,8 +37,8 @@ public class TopAsteroid extends FallingObject{
     }
 
     @Override
-    public void respawn(){
-        setX(Random.from(new Random()).nextInt(0, screenWidth - 20));
+    public void respawn() {
+        setX(Random.from(new Random()).nextInt(screenWidth / 2, screenWidth + 40));
         setY(-50);
         if(getRespawnCounter() == getRespawnCounterTarget()){
             setRespawnCounter(0);
@@ -49,13 +49,13 @@ public class TopAsteroid extends FallingObject{
 
     @Override
     public void setDefaultValues(){
-        setTextureShiftX(18);
-        setTextureShiftY(26);
-        setX(Random.from(new Random()).nextInt(0, screenWidth - 20));
+        setTextureShiftX(12);
+        setTextureShiftY(30);
+        setX(Random.from(new Random()).nextInt(screenWidth / 2, screenWidth));
         setY(-50);
-        setSpeed(3);
+        setSpeed(2);
         setRespawnCounter(0);
-        setRespawnCounterTarget(8);
+        setRespawnCounterTarget(6);
         setSpriteCounter(0);
         setSolidArea(new Rectangle(getX()+getTextureShiftX(), getY()+getTextureShiftY(), 30, 29));
     }
