@@ -31,9 +31,6 @@ public class Spaceship extends Entity{
         this.movementBehaviour = movementBehaviour;
         getImages();
         setDefaultValues();
-        setAliveState(new Alive(this));
-        setDeadState(new Dead(this));
-        setState(getAliveState());
     }
 
     public void performMovement(){
@@ -90,6 +87,15 @@ public class Spaceship extends Entity{
         setY(380);
         setSpeed(3);
         setSolidArea(new Rectangle(getX()+getTextureShiftX(), getY()+getTextureShiftY(), 36, 38));
+        setAliveState(new Alive(this));
+        setDeadState(new Dead(this));
+        setState(getAliveState());
+        setCollision(false);
+    }
+
+    @Override
+    public void reset(){
+        setDefaultValues();
     }
 
     public KeyHandler getKeyHandler() {

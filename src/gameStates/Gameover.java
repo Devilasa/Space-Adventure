@@ -2,6 +2,8 @@ package gameStates;
 
 import main.GamePanel;
 
+import java.awt.*;
+
 public class Gameover implements GameState{
     private GamePanel gamePanel;
     private int timer = 0;
@@ -18,12 +20,24 @@ public class Gameover implements GameState{
 
     @Override
     public void goMenu() {
-
+        timer = 0;
+        gamePanel.getObjectsManager().reset();
+        gamePanel.getGameoverDisplay().setScale(0);
+        gamePanel.remove(gamePanel.getGameoverDisplay());
+        gamePanel.add(gamePanel.getMenuDisplay(),0);
+        gamePanel.validate();
+        gamePanel.setGameState(gamePanel.getMenuState());
     }
 
     @Override
     public void goGame() {
-
+        timer = 0;
+        gamePanel.getObjectsManager().reset();
+        gamePanel.getGameoverDisplay().setScale(0);
+        gamePanel.remove(gamePanel.getGameoverDisplay());
+        gamePanel.add(gamePanel.getObjectsManager(), 0);
+        gamePanel.validate();
+        gamePanel.setGameState(gamePanel.getInGameState());
     }
 
     @Override
@@ -34,9 +48,8 @@ public class Gameover implements GameState{
         if(timer > 70) {
             gamePanel.remove(gamePanel.getObjectsManager());
             gamePanel.validate();
-            timer = 0;
+            timer = 1;
         }
         timer++;
     }
-
 }

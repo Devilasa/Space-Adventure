@@ -36,6 +36,11 @@ public abstract class FallingObject extends Entity{
         state.draw(graphics2D);
     }
 
+    @Override
+    public void reset(){
+        setDefaultValues();
+    }
+
     public int getRespawnCounterTarget() {
         return respawnCounterTarget;
     }

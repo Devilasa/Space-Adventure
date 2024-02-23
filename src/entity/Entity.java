@@ -14,6 +14,7 @@ public abstract class Entity {
     public abstract void update();
     public abstract void draw(Graphics2D graphics2D);
     public abstract void getImages();
+    public abstract void reset();
 
     public int getX() {
         return x;

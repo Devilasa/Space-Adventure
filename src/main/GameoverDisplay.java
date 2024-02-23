@@ -15,6 +15,8 @@ public class GameoverDisplay extends JComponent {
     private BufferedImage back;
     private BufferedImage gameover;
     private BufferedImage tryAgain;
+    private Rectangle tryAgainButton = new Rectangle(30, 405, 490, 70);
+    private Rectangle gameOverBackButton = new Rectangle(665, 405, 245, 70);
     private int scale = 0;
 
     public GameoverDisplay(GamePanel gamePanel) {
@@ -54,5 +56,21 @@ public class GameoverDisplay extends JComponent {
 
     public void setScale(int scale) {
         this.scale = scale;
+    }
+
+    public Rectangle getTryAgainButton() {
+        return tryAgainButton;
+    }
+
+    public void setTryAgainButton(Rectangle tryAgainButton) {
+        this.tryAgainButton = tryAgainButton;
+    }
+
+    public Rectangle getGameOverBackButton() {
+        return gameOverBackButton;
+    }
+
+    public void setGameOverBackButton(Rectangle gameOverBackButton) {
+        this.gameOverBackButton = gameOverBackButton;
     }
 }

@@ -3,6 +3,7 @@ package main;
 import gameStates.GameState;
 import gameStates.Gameover;
 import gameStates.InGame;
+import gameStates.Menu;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,21 +23,24 @@ public class GamePanel extends JLayeredPane  implements Runnable {
     private Thread gameThread;
     private ObjectsManager objectsManager;
     private GameoverDisplay gameoverDisplay;
-    GameState gameState;
-    GameState menu;
-    GameState inGame;
-    GameState gameover;
+    private MenuDisplay menuDisplay;
+    private GameState gameState;
+    private GameState menu;
+    private GameState inGame;
+    private GameState gameover;
 
 
     public GamePanel() {
         objectsManager = new ObjectsManager(this);
         gameoverDisplay = new GameoverDisplay(this);
+        menuDisplay = new MenuDisplay(this);
+
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
         this.setFocusable(true);
         this.addKeyListener(objectsManager.getKeyHandler());
-        this.addMouseListener(new MouseHandler());
+        this.addMouseListener(new MouseHandler(this));
         setLayout(new OverlayLayout(this));
 
         add(objectsManager, 0);
@@ -46,6 +50,7 @@ public class GamePanel extends JLayeredPane  implements Runnable {
 
         setInGameState(new InGame(this));
         setGameoverState(new Gameover(this));
+        setMenuState(new Menu(this));
         setGameState(inGame);
 
 
@@ -79,6 +84,7 @@ public class GamePanel extends JLayeredPane  implements Runnable {
                 update();
                 repaint();
                  //System.out.println("GamePanel thread is running");
+                System.out.println(gameState.getClass().getSimpleName());
                 delta--;
                 drawCount++;
             }
@@ -161,6 +167,14 @@ public class GamePanel extends JLayeredPane  implements Runnable {
 
     public void setGameoverDisplay(GameoverDisplay gameoverDisplay) {
         this.gameoverDisplay = gameoverDisplay;
+    }
+
+    public MenuDisplay getMenuDisplay() {
+        return menuDisplay;
+    }
+
+    public void setMenuDisplay(MenuDisplay menuDisplay) {
+        this.menuDisplay = menuDisplay;
     }
 
     public Boolean getUpdateScore() {

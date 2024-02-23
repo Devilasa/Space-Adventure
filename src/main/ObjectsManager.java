@@ -70,6 +70,14 @@ public class ObjectsManager extends JComponent{
         }
     }
 
+    public void reset(){
+        for(Entity e : entities){
+            e.reset();
+        }
+        gamePanel.setScore(0);
+        gamePanel.setUpdateScore(true);
+    }
+
     public ArrayList<Entity> getEntities() {
         return entities;
     }
