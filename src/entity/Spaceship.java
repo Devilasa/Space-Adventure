@@ -1,6 +1,7 @@
 package entity;
 
 import behaviours.MovementBehaviour;
+import main.GamePanel;
 import main.KeyHandler;
 import states.Alive;
 import states.Dead;
@@ -16,13 +17,16 @@ import java.util.ArrayList;
 public class Spaceship extends Entity{
     private ArrayList<BufferedImage> aliveImages = new ArrayList<>();
     private ArrayList<BufferedImage> deadImages = new ArrayList<>();
+    private GamePanel gamePanel;
     private KeyHandler keyHandler;
+    private MovementBehaviour movementBehaviour;
     private State state;
     private State alive;
     private State dead;
-    MovementBehaviour movementBehaviour;
 
-    public Spaceship(KeyHandler keyHandler, MovementBehaviour movementBehaviour) {
+
+    public Spaceship(GamePanel gamePanel, KeyHandler keyHandler, MovementBehaviour movementBehaviour) {
+        this.gamePanel = gamePanel;
         this.keyHandler = keyHandler;
         this.movementBehaviour = movementBehaviour;
         getImages();
@@ -129,5 +133,13 @@ public class Spaceship extends Entity{
 
     public void setDeadImages(ArrayList<BufferedImage> deadImages) {
         this.deadImages = deadImages;
+    }
+
+    public GamePanel getGamePanel() {
+        return gamePanel;
+    }
+
+    public void setGamePanel(GamePanel gamePanel) {
+        this.gamePanel = gamePanel;
     }
 }

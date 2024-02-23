@@ -1,5 +1,9 @@
 package main;
 
+import states.Gameover;
+import states.InGame;
+import states.State;
+
 import javax.swing.*;
 import java.awt.*;
 public class GamePanel extends JLayeredPane  implements Runnable {
@@ -16,10 +20,16 @@ public class GamePanel extends JLayeredPane  implements Runnable {
     private Integer score = 0;
     private Thread gameThread;
     private ObjectsManager objectsManager;
+    private GameoverDisplay gameoverDisplay;
+    State state;
+    State menu;
+    State inGame;
+    State gameover;
 
 
     public GamePanel() {
-        objectsManager = new ObjectsManager();
+        objectsManager = new ObjectsManager(this);
+        gameoverDisplay = new GameoverDisplay(this);
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
@@ -33,8 +43,9 @@ public class GamePanel extends JLayeredPane  implements Runnable {
         add(objectsManager, 0);
 
 
-        //System.out.println(this.getComponentCount());
-
+        setInGameState(new InGame(this));
+        setGameoverState(new Gameover(this));
+        setState(inGame);
 
 
     }
@@ -44,7 +55,7 @@ public class GamePanel extends JLayeredPane  implements Runnable {
         gameThread.start();
         Song song = Song.getInstance();
         song.setSongType("menuSong");
-        song.playMusic();
+        //song.playMusic();
 
     }
 
@@ -80,18 +91,23 @@ public class GamePanel extends JLayeredPane  implements Runnable {
     }
 
     public void update(){
-
+        state.update();
+        //System.out.println(state.getClass());
     }
 
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
         Graphics2D graphics2D = (Graphics2D) graphics;
-
+        state.draw(graphics2D);
 
     }
 
     public int getFPS() {
         return FPS;
+    }
+
+    public void setScore(Integer score) {
+        this.score = score;
     }
 
     public Integer getScore() {
@@ -104,5 +120,45 @@ public class GamePanel extends JLayeredPane  implements Runnable {
 
     public void setObjectsManager(ObjectsManager objectsManager) {
         this.objectsManager = objectsManager;
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
+    }
+
+    public State getMenuState() {
+        return menu;
+    }
+
+    public void setMenuState(State menu) {
+        this.menu = menu;
+    }
+
+    public State getInGameState() {
+        return inGame;
+    }
+
+    public void setInGameState(State inGame) {
+        this.inGame = inGame;
+    }
+
+    public State getGameoverState() {
+        return gameover;
+    }
+
+    public void setGameoverState(State gameover) {
+        this.gameover = gameover;
+    }
+
+    public GameoverDisplay getGameoverDisplay() {
+        return gameoverDisplay;
+    }
+
+    public void setGameoverDisplay(GameoverDisplay gameoverDisplay) {
+        this.gameoverDisplay = gameoverDisplay;
     }
 }
