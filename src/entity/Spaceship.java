@@ -44,6 +44,7 @@ public class Spaceship extends Entity{
     public void update() {
         if(isCollision()){
             setState(getDeadState());
+            gamePanel.setUpdateScore(false);
         }
         state.update();
     }

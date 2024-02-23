@@ -1,7 +1,5 @@
 package main;
 
-import states.Gameover;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -48,5 +46,13 @@ public class GameoverDisplay extends JComponent {
         graphics2D.drawString(gamePanel.getScore().toString(), screenWidth/2 - SCREEN_SHIFT_X, SCREEN_SHIFT_Y);
 
         graphics2D.dispose();
+    }
+
+    public int getScale() {
+        return scale;
+    }
+
+    public void setScale(int scale) {
+        this.scale = scale;
     }
 }

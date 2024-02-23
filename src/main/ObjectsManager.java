@@ -8,7 +8,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-import static main.GamePanel.FPS;
+import static main.GamePanel.*;
+import static main.GamePanel.SCREEN_SHIFT_Y;
 
 public class ObjectsManager extends JComponent{
     private GamePanel gamePanel;
@@ -16,6 +17,7 @@ public class ObjectsManager extends JComponent{
     private KeyHandler keyHandler;
 
     public ObjectsManager(GamePanel gamePanel) {
+        this.gamePanel = gamePanel;
         this.keyHandler = new KeyHandler();
         entities = new ArrayList<>();
         entities.add(new TopAsteroid(new StraightFall()));
@@ -45,7 +47,9 @@ public class ObjectsManager extends JComponent{
         for(Entity entity : entities){
             entity.draw(graphics2D);
         }
-
+        graphics2D.setColor(Color.white);
+        graphics2D.setFont(new Font("Arial", Font.BOLD, 50));
+        graphics2D.drawString(gamePanel.getScore().toString(), screenWidth/2 - SCREEN_SHIFT_X, SCREEN_SHIFT_Y);
         graphics2D.dispose();
     }
 
@@ -57,6 +61,12 @@ public class ObjectsManager extends JComponent{
                     break;
                 }
             }
+        }
+    }
+
+    public void explodeAll(){
+        for(Entity e : entities){
+            e.setCollision(true);
         }
     }
 

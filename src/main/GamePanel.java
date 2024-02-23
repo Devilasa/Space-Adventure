@@ -1,8 +1,8 @@
 package main;
 
-import states.Gameover;
-import states.InGame;
-import states.State;
+import gameStates.GameState;
+import gameStates.Gameover;
+import gameStates.InGame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,13 +18,14 @@ public class GamePanel extends JLayeredPane  implements Runnable {
     public static final int SCREEN_SHIFT_Y = 56;
     public static final int FPS = 120;
     private Integer score = 0;
+    private Boolean updateScore = true;
     private Thread gameThread;
     private ObjectsManager objectsManager;
     private GameoverDisplay gameoverDisplay;
-    State state;
-    State menu;
-    State inGame;
-    State gameover;
+    GameState gameState;
+    GameState menu;
+    GameState inGame;
+    GameState gameover;
 
 
     public GamePanel() {
@@ -38,14 +39,14 @@ public class GamePanel extends JLayeredPane  implements Runnable {
         this.addMouseListener(new MouseHandler());
         setLayout(new OverlayLayout(this));
 
-
-        add(new BackgroundSky(), 1);
         add(objectsManager, 0);
+        add(new BackgroundSky(), -1);
+
 
 
         setInGameState(new InGame(this));
         setGameoverState(new Gameover(this));
-        setState(inGame);
+        setGameState(inGame);
 
 
     }
@@ -91,14 +92,14 @@ public class GamePanel extends JLayeredPane  implements Runnable {
     }
 
     public void update(){
-        state.update();
+        gameState.update();
         //System.out.println(state.getClass());
     }
 
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
         Graphics2D graphics2D = (Graphics2D) graphics;
-        state.draw(graphics2D);
+       // state.draw(graphics2D);
 
     }
 
@@ -122,35 +123,35 @@ public class GamePanel extends JLayeredPane  implements Runnable {
         this.objectsManager = objectsManager;
     }
 
-    public State getState() {
-        return state;
+    public GameState getGameState() {
+        return gameState;
     }
 
-    public void setState(State state) {
-        this.state = state;
+    public void setGameState(GameState gameState) {
+        this.gameState = gameState;
     }
 
-    public State getMenuState() {
+    public GameState getMenuState() {
         return menu;
     }
 
-    public void setMenuState(State menu) {
+    public void setMenuState(GameState menu) {
         this.menu = menu;
     }
 
-    public State getInGameState() {
+    public GameState getInGameState() {
         return inGame;
     }
 
-    public void setInGameState(State inGame) {
+    public void setInGameState(GameState inGame) {
         this.inGame = inGame;
     }
 
-    public State getGameoverState() {
+    public GameState getGameoverState() {
         return gameover;
     }
 
-    public void setGameoverState(State gameover) {
+    public void setGameoverState(GameState gameover) {
         this.gameover = gameover;
     }
 
@@ -160,5 +161,13 @@ public class GamePanel extends JLayeredPane  implements Runnable {
 
     public void setGameoverDisplay(GameoverDisplay gameoverDisplay) {
         this.gameoverDisplay = gameoverDisplay;
+    }
+
+    public Boolean getUpdateScore() {
+        return updateScore;
+    }
+
+    public void setUpdateScore(Boolean updateScore) {
+        this.updateScore = updateScore;
     }
 }

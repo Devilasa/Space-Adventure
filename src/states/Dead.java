@@ -39,9 +39,7 @@ public class Dead implements State{
             spaceship.setY(spaceship.getY() - 64);
             spaceship.getSolidArea().setLocation(-150, 0);
             deathTimer = -1;
-            spaceship.getGamePanel().setState(spaceship.getGamePanel().getGameoverState());
-            //spaceship.getGamePanel().getGameoverState().changePanel();
-
+            spaceship.getGamePanel().getGameState().goGameOver();
         }
         if(deathTimer > -1) {
             ++deathTimer;
