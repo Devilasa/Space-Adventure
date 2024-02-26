@@ -18,8 +18,8 @@ public class MenuDisplay extends JComponent {
         textField.setText("Guest1");
         textField.setBackground(Color.CYAN);
         textField.setVisible(true);
-        //add(textField, 0);
-        //validate();
+        add(textField, 0);
+        validate();
     }
 
     public void paintComponent(Graphics graphics){

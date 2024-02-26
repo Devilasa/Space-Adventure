@@ -12,6 +12,7 @@ public class GamePanel extends JLayeredPane  implements Runnable {
     public static final int tileSize = originalTileSize * scale; // 64x64 tile
     public static final int maxScreenCol = 16;
     public static final int maxScreenRow = 12;
+
     public static final int screenWidth = tileSize * maxScreenCol; // 1024 pixels
     public static final int screenHeight = tileSize * maxScreenRow; // 768 pixels
     public static final int SCREEN_SHIFT_X = 32;
@@ -46,7 +47,6 @@ public class GamePanel extends JLayeredPane  implements Runnable {
         this.addKeyListener(objectsManager.getKeyHandler());
         this.addMouseListener(new MouseHandler(this));
         setLayout(new OverlayLayout(this));
-
 
         add(menuDisplay, 0);
         add(new BackgroundSky(), -1);
@@ -92,7 +92,7 @@ public class GamePanel extends JLayeredPane  implements Runnable {
                 drawCount++;
             }
             if(timer >= 1000000000){
-                System.out.println("FPS:"+drawCount);
+                //System.out.println("FPS:"+drawCount);
                 drawCount = 0;
                 timer = 0;
             }
@@ -108,7 +108,6 @@ public class GamePanel extends JLayeredPane  implements Runnable {
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
         Graphics2D graphics2D = (Graphics2D) graphics;
-       // state.draw(graphics2D);
 
     }
 
