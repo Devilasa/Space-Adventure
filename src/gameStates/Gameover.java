@@ -23,6 +23,7 @@ public class Gameover implements GameState{
         timer = 0;
         gamePanel.getObjectsManager().reset();
         gamePanel.getGameoverDisplay().setScale(0);
+        gamePanel.remove(gamePanel.getObjectsManager());
         gamePanel.remove(gamePanel.getGameoverDisplay());
         gamePanel.add(gamePanel.getMenuDisplay(),0);
         gamePanel.validate();
@@ -52,4 +53,10 @@ public class Gameover implements GameState{
         }
         timer++;
     }
+
+    @Override
+    public void goLeaderboard() {
+
+    }
+
 }

@@ -3,9 +3,9 @@ package entity;
 import behaviours.MovementBehaviour;
 import main.GamePanel;
 import main.KeyHandler;
-import states.Alive;
-import states.Dead;
-import states.State;
+import objectStates.Alive;
+import objectStates.Dead;
+import objectStates.State;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

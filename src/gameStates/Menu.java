@@ -31,4 +31,12 @@ public class Menu implements GameState{
     public void goGameOver() {
 
     }
+
+    @Override
+    public void goLeaderboard() {
+        gamePanel.add(gamePanel.getLeaderboardDisplay(), 0);
+        gamePanel.remove(gamePanel.getMenuDisplay());
+        gamePanel.validate();
+        gamePanel.setGameState(gamePanel.getLeaderboardState());
+    }
 }

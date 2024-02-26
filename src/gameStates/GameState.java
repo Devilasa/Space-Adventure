@@ -5,4 +5,5 @@ public interface GameState {
     void goMenu();
     void goGame();
     void goGameOver();
+    void goLeaderboard();
 }

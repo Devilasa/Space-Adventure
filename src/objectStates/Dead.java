@@ -1,12 +1,10 @@
-package states;
+package objectStates;
 
 import entity.Spaceship;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-
-import static main.GamePanel.tileSize;
 
 public class Dead implements State{
     private Spaceship spaceship;
@@ -33,11 +31,12 @@ public class Dead implements State{
             spaceship.setY(spaceship.getY() - 32);
         } else if (deathTimer == DEATH_ANIMATION_SPEED_MULTIPLIER*4) {
             currentImage = images.get(4);
+            spaceship.getSolidArea().setLocation(-150, 0);
         } else if (deathTimer == DEATH_ANIMATION_SPEED_MULTIPLIER*5) {
             currentImage = images.get(5);
             spaceship.setX(spaceship.getX() - 64);
             spaceship.setY(spaceship.getY() - 64);
-            spaceship.getSolidArea().setLocation(-150, 0);
+
             deathTimer = -1;
             spaceship.getGamePanel().getGameState().goGameOver();
         }

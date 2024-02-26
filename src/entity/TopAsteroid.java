@@ -1,8 +1,8 @@
 package entity;
 
 import behaviours.FallingBehaviour;
-import states.Exploded;
-import states.Flying;
+import objectStates.Exploded;
+import objectStates.Flying;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

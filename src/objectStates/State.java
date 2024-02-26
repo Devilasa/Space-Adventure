@@ -1,4 +1,4 @@
-package states;
+package objectStates;
 
 import java.awt.*;
 

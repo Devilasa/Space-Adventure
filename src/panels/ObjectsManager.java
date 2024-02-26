@@ -1,7 +1,9 @@
-package main;
+package panels;
 
 import behaviours.*;
 import entity.*;
+import main.GamePanel;
+import main.KeyHandler;
 
 import javax.swing.*;
 

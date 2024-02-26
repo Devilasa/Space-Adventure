@@ -1,4 +1,4 @@
-package states;
+package objectStates;
 
 import entity.Spaceship;
 import main.KeyHandler;

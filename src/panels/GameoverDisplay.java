@@ -1,4 +1,6 @@
-package main;
+package panels;
+
+import main.GamePanel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

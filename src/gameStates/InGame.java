@@ -36,4 +36,9 @@ public class InGame implements GameState{
 
         gamePanel.setGameState(gamePanel.getGameoverState());
     }
+
+    @Override
+    public void goLeaderboard() {
+
+    }
 }

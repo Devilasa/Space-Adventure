@@ -1,9 +1,8 @@
 package main;
 
-import gameStates.GameState;
-import gameStates.Gameover;
-import gameStates.InGame;
+import gameStates.*;
 import gameStates.Menu;
+import panels.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,16 +23,20 @@ public class GamePanel extends JLayeredPane  implements Runnable {
     private ObjectsManager objectsManager;
     private GameoverDisplay gameoverDisplay;
     private MenuDisplay menuDisplay;
+    private LeaderboardDisplay leaderboardDisplay;
     private GameState gameState;
     private GameState menu;
     private GameState inGame;
+    private GameState leaderboard;
     private GameState gameover;
+
 
 
     public GamePanel() {
         objectsManager = new ObjectsManager(this);
         gameoverDisplay = new GameoverDisplay(this);
-        menuDisplay = new MenuDisplay(this);
+        menuDisplay = new MenuDisplay();
+        leaderboardDisplay = new LeaderboardDisplay();
 
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
@@ -43,15 +46,16 @@ public class GamePanel extends JLayeredPane  implements Runnable {
         this.addMouseListener(new MouseHandler(this));
         setLayout(new OverlayLayout(this));
 
-        add(objectsManager, 0);
+        //add(objectsManager, 0);
+        add(menuDisplay, 0);
         add(new BackgroundSky(), -1);
 
 
-
-        setInGameState(new InGame(this));
-        setGameoverState(new Gameover(this));
         setMenuState(new Menu(this));
-        setGameState(inGame);
+        setInGameState(new InGame(this));
+        setLeaderboardState(new Leaderboard(this));
+        setGameoverState(new Gameover(this));
+        setGameState(menu);
 
 
     }
@@ -83,8 +87,8 @@ public class GamePanel extends JLayeredPane  implements Runnable {
             if(delta >= 1){
                 update();
                 repaint();
-                 //System.out.println("GamePanel thread is running");
-                System.out.println(gameState.getClass().getSimpleName());
+                //System.out.println("GamePanel thread is running");
+                //System.out.println(gameState.getClass().getSimpleName());
                 delta--;
                 drawCount++;
             }
@@ -152,6 +156,13 @@ public class GamePanel extends JLayeredPane  implements Runnable {
     public void setInGameState(GameState inGame) {
         this.inGame = inGame;
     }
+    public GameState getLeaderboardState() {
+        return leaderboard;
+    }
+
+    public void setLeaderboardState(GameState leaderboard) {
+        this.leaderboard = leaderboard;
+    }
 
     public GameState getGameoverState() {
         return gameover;
@@ -160,6 +171,7 @@ public class GamePanel extends JLayeredPane  implements Runnable {
     public void setGameoverState(GameState gameover) {
         this.gameover = gameover;
     }
+
 
     public GameoverDisplay getGameoverDisplay() {
         return gameoverDisplay;
@@ -175,6 +187,14 @@ public class GamePanel extends JLayeredPane  implements Runnable {
 
     public void setMenuDisplay(MenuDisplay menuDisplay) {
         this.menuDisplay = menuDisplay;
+    }
+
+    public LeaderboardDisplay getLeaderboardDisplay() {
+        return leaderboardDisplay;
+    }
+
+    public void setLeaderboardDisplay(LeaderboardDisplay leaderboardDisplay) {
+        this.leaderboardDisplay = leaderboardDisplay;
     }
 
     public Boolean getUpdateScore() {

@@ -1,19 +1,17 @@
-package main;
+package panels;
+
+import main.GamePanel;
 
 import javax.swing.*;
 import java.awt.*;
 
-import static main.GamePanel.*;
-
 public class MenuDisplay extends JComponent {
     private TextField textField;
-    private Rectangle menuPlayButton = new Rectangle(390, 320, 240, 70);
+    private Rectangle playButton = new Rectangle(390, 320, 240, 70);
     private Rectangle exitButton = new Rectangle(390, 600, 230, 100);
-    private Rectangle menuLeaderboardButton = new Rectangle(180, 480, 665, 70);
-    private GamePanel gamePanel;
+    private Rectangle leaderboardButton = new Rectangle(180, 480, 665, 70);
 
-    public MenuDisplay(GamePanel gamePanel) {
-        this.gamePanel = gamePanel;
+    public MenuDisplay() {
         textField = new TextField();
         textField.setBounds(365, 170, 300, 60);
         textField.setFont(new Font("Algerian", Font.BOLD, 50));
@@ -36,13 +34,13 @@ public class MenuDisplay extends JComponent {
         /* Play */
         graphics2D.setColor(Color.yellow);
         graphics2D.setFont(new Font("Algerian", Font.BOLD, 90));
-        graphics2D.drawString("Play", menuPlayButton.x, menuPlayButton.y + 70);
+        graphics2D.drawString("Play", playButton.x, playButton.y + 70);
 
 
         /* Leaderboard */
         graphics2D.setColor(Color.yellow);
         graphics2D.setFont(new Font("Algerian", Font.BOLD, 90));
-        graphics2D.drawString("Leaderboard", menuLeaderboardButton.x, menuLeaderboardButton.y + 70);
+        graphics2D.drawString("Leaderboard", leaderboardButton.x, leaderboardButton.y + 70);
 
         /* Exit */
         graphics2D.setColor(Color.yellow);
@@ -61,12 +59,12 @@ public class MenuDisplay extends JComponent {
         this.textField = textField;
     }
 
-    public Rectangle getMenuPlayButton() {
-        return menuPlayButton;
+    public Rectangle getPlayButton() {
+        return playButton;
     }
 
-    public void setMenuPlayButton(Rectangle menuPlayButton) {
-        this.menuPlayButton = menuPlayButton;
+    public void setPlayButton(Rectangle playButton) {
+        this.playButton = playButton;
     }
 
     public Rectangle getExitButton() {
@@ -77,11 +75,11 @@ public class MenuDisplay extends JComponent {
         this.exitButton = exitButton;
     }
 
-    public Rectangle getMenuLeaderboardButton() {
-        return menuLeaderboardButton;
+    public Rectangle getLeaderboardButton() {
+        return leaderboardButton;
     }
 
-    public void setMenuLeaderboardButton(Rectangle menuLeaderboardButton) {
-        this.menuLeaderboardButton = menuLeaderboardButton;
+    public void setLeaderboardButton(Rectangle leaderboardButton) {
+        this.leaderboardButton = leaderboardButton;
     }
 }

@@ -1,7 +1,7 @@
 package entity;
 
 import behaviours.FallingBehaviour;
-import states.State;
+import objectStates.State;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
