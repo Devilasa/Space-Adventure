@@ -33,7 +33,7 @@ public class InGame implements GameState{
     public void goGameOver() {
         gamePanel.add(gamePanel.getGameoverDisplay(),0);
         gamePanel.validate();
-
+        gamePanel.getLeaderboardDisplay().update();
         gamePanel.setGameState(gamePanel.getGameoverState());
     }
 

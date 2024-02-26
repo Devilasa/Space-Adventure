@@ -38,7 +38,7 @@ public class GamePanel extends JLayeredPane  implements Runnable {
         objectsManager = new ObjectsManager(this);
         gameoverDisplay = new GameoverDisplay(this);
         menuDisplay = new MenuDisplay();
-        leaderboardDisplay = new LeaderboardDisplay();
+        leaderboardDisplay = new LeaderboardDisplay(this);
 
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
