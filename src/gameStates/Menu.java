@@ -25,6 +25,7 @@ public class Menu implements GameState{
         gamePanel.remove(gamePanel.getMenuDisplay());
         gamePanel.validate();
         gamePanel.setGameState(gamePanel.getInGameState());
+        gamePanel.getSong().switchSong();
     }
 
     @Override

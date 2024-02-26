@@ -29,6 +29,7 @@ public class GamePanel extends JLayeredPane  implements Runnable {
     private GameState inGame;
     private GameState leaderboard;
     private GameState gameover;
+    private Song song;
 
 
 
@@ -46,10 +47,9 @@ public class GamePanel extends JLayeredPane  implements Runnable {
         this.addMouseListener(new MouseHandler(this));
         setLayout(new OverlayLayout(this));
 
-        //add(objectsManager, 0);
+
         add(menuDisplay, 0);
         add(new BackgroundSky(), -1);
-
 
         setMenuState(new Menu(this));
         setInGameState(new InGame(this));
@@ -57,15 +57,14 @@ public class GamePanel extends JLayeredPane  implements Runnable {
         setGameoverState(new Gameover(this));
         setGameState(menu);
 
-
     }
 
     public void startGameThread() {
         gameThread = new Thread(this);
         gameThread.start();
-        Song song = Song.getInstance();
+        song = Song.getInstance();
         song.setSongType("menuSong");
-        //song.playMusic();
+        song.playMusic();
 
     }
 
@@ -93,7 +92,7 @@ public class GamePanel extends JLayeredPane  implements Runnable {
                 drawCount++;
             }
             if(timer >= 1000000000){
-                //System.out.println("FPS:"+drawCount);
+                System.out.println("FPS:"+drawCount);
                 drawCount = 0;
                 timer = 0;
             }
@@ -203,5 +202,13 @@ public class GamePanel extends JLayeredPane  implements Runnable {
 
     public void setUpdateScore(Boolean updateScore) {
         this.updateScore = updateScore;
+    }
+
+    public Song getSong() {
+        return song;
+    }
+
+    public void setSong(Song song) {
+        this.song = song;
     }
 }

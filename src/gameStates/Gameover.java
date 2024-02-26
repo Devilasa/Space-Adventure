@@ -2,8 +2,6 @@ package gameStates;
 
 import main.GamePanel;
 
-import java.awt.*;
-
 public class Gameover implements GameState{
     private GamePanel gamePanel;
     private int timer = 0;
@@ -28,6 +26,7 @@ public class Gameover implements GameState{
         gamePanel.add(gamePanel.getMenuDisplay(),0);
         gamePanel.validate();
         gamePanel.setGameState(gamePanel.getMenuState());
+        gamePanel.getSong().switchSong();
     }
 
     @Override
