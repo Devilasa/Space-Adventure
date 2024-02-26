@@ -11,7 +11,6 @@ import java.awt.*;
 import java.util.ArrayList;
 
 import static main.GamePanel.*;
-import static main.GamePanel.SCREEN_SHIFT_Y;
 
 public class ObjectsManager extends JComponent{
     private GamePanel gamePanel;

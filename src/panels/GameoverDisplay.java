@@ -10,7 +10,6 @@ import java.io.File;
 import java.io.IOException;
 
 import static main.GamePanel.*;
-import static main.GamePanel.SCREEN_SHIFT_Y;
 
 public class GameoverDisplay extends JComponent {
     private GamePanel gamePanel;

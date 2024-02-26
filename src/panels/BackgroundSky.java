@@ -4,8 +4,6 @@ import tile.TileManager;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
 
 import static main.GamePanel.*;
 
