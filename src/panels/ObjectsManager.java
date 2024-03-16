@@ -1,6 +1,7 @@
 package panels;
 
-import behaviours.*;
+import behaviours.fallingBahaviour.*;
+import behaviours.movementBehaviour.AllDirectionMovement;
 import entity.*;
 import main.GamePanel;
 import main.KeyHandler;

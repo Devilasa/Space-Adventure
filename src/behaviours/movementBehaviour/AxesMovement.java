@@ -1,4 +1,4 @@
-package behaviours;
+package behaviours.movementBehaviour;
 
 import entity.Spaceship;
 import main.KeyHandler;

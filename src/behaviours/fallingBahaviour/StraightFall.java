@@ -1,4 +1,4 @@
-package behaviours;
+package behaviours.fallingBahaviour;
 
 import entity.FallingObject;
 

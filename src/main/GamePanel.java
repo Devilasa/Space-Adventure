@@ -7,12 +7,11 @@ import panels.*;
 import javax.swing.*;
 import java.awt.*;
 public class GamePanel extends JLayeredPane  implements Runnable {
-    public static final int originalTileSize = 16; // 16x16 tile
+    public static final int originalTileSize = 16; // 16x16 tilegame
     public static final int scale = 4;
     public static final int tileSize = originalTileSize * scale; // 64x64 tile
     public static final int maxScreenCol = 16;
     public static final int maxScreenRow = 12;
-
     public static final int screenWidth = tileSize * maxScreenCol; // 1024 pixels
     public static final int screenHeight = tileSize * maxScreenRow; // 768 pixels
     public static final int SCREEN_SHIFT_X = 32;
@@ -63,9 +62,7 @@ public class GamePanel extends JLayeredPane  implements Runnable {
         gameThread = new Thread(this);
         gameThread.start();
         song = Song.getInstance();
-        song.setSongType("menuSong");
         song.playMusic();
-
     }
 
     @Override
@@ -102,7 +99,6 @@ public class GamePanel extends JLayeredPane  implements Runnable {
 
     public void update(){
         gameState.update();
-        //System.out.println(state.getClass());
     }
 
     public void paintComponent(Graphics graphics) {

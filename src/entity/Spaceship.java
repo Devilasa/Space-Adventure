@@ -1,6 +1,6 @@
 package entity;
 
-import behaviours.MovementBehaviour;
+import behaviours.movementBehaviour.MovementBehaviour;
 import main.GamePanel;
 import main.KeyHandler;
 import objectStates.Alive;

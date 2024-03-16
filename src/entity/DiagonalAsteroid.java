@@ -1,6 +1,6 @@
 package entity;
 
-import behaviours.FallingBehaviour;
+import behaviours.fallingBahaviour.FallingBehaviour;
 import objectStates.Exploded;
 import objectStates.Flying;
 

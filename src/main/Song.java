@@ -17,6 +17,7 @@ public class Song {
     private Song() {
         gameSong = new File("res/sound/GameSong.wav");
         menuSong = new File("res/sound/MenuSong.wav");
+        songType = "menuSong";
     }
 
     public static Song getInstance(){
